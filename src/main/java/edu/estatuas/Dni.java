@@ -13,25 +13,30 @@ public class Dni {
     }
 
     public int getNumero(){
-        return Integer.parseInt(this.dni.substring(0, 7));
+        if (Character.isAlphabetic(getDni().charAt(getDni().length()-1))) {
+            return Integer.parseInt(getDni().substring(0, (getDni().length()-1)));
+        } else {
+            return Integer.parseInt(getDni());
+        }
+
     }
 
     public char getLetra(){
-        return this.dni.charAt(this.dni.length()-1);
+        return getDni().charAt(getDni().length()-1);
     }
 
     public String asignarLetra(){
 
-        String dniNumeros = Integer.toString(this.getNumero());
-        char letra = edu.estatuas.CodigoControl.calcularLetra(this.getNumero());
+        String dniNumeros = Integer.toString(getNumero());
+        char letra = edu.estatuas.CodigoControl.calcularLetra(getNumero());
 
         return dniNumeros + letra;
 
     }
 
     public boolean verificarLetra(){
-        char letraInput = getDni().charAt(8);
+        char letraInput = getLetra();
 
-        return letraInput == edu.estatuas.CodigoControl.calcularLetra(this.getNumero());
+        return letraInput == edu.estatuas.CodigoControl.calcularLetra(getNumero());
     }
 }
