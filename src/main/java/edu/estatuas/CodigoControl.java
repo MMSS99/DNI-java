@@ -7,14 +7,18 @@ public class CodigoControl {
         return CodigoDeControl;
     }
 
-    private char obtenerLetra(int posicion){
+    private char getLetra(int posicion){
         return this.getCodigoDeControl()[posicion];
+    }
+
+    private int calcularLetra(int numero){
+        return numero % getCodigoDeControl().length;
     }
 
     public String asignarLetra(int numero){
 
         String dni = Integer.toString(numero);
-        char letra = obtenerLetra(numero);
+        char letra = getLetra(numero);
 
         return dni + letra;
 
@@ -23,6 +27,6 @@ public class CodigoControl {
     public boolean verificarLetra(String dni){
         char letraInput = dni.charAt(8);
 
-        return letraInput == obtenerLetra(8);
+        return letraInput == getLetra(8);
     }
 }
